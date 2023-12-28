@@ -1,0 +1,47 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/form.css">
+    <style>
+        label.required::after { content: '*';
+    color: red;}
+    </style>
+
+    <title>Register</title>
+</head>
+<body>
+
+<div class="container">
+        <h1>Register</h1>{% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-info">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" placeholder="Submit"
+        class="btn btn-secondary">
+    </form> 
+</div>
+
+<p>
+    <li> All Ready have an account? <a href="login">Login</a></li>
+</p>
+
+{% if message %}
+<ul>
+{% for message in messages %}
+    <li>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>
